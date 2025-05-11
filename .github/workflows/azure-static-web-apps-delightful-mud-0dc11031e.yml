@@ -23,12 +23,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '16.20.2'  # Version compatible avec Angular 14
 
       - name: Install dependencies
         run: |
           npm install --legacy-peer-deps
-          npm install -g @angular/cli
+          npm install -g @angular/cli@14.2.0  # Version spécifique d'Angular CLI compatible avec Angular 14
 
       - name: Build
         run: ng build --configuration production
@@ -43,7 +43,7 @@ jobs:
           app_location: "./"
           api_location: ""
           output_location: "dist"
-          skip_app_build: true  # Important: Skip the default build since we did it manually
+          skip_app_build: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
